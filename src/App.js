@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Card from "./config/component/Card"
+import {Indosat, XLaxita, Telkomsel, AxisAxita,Smartfren} from "./penggabung/HomeKuota";
+import {HashRouter, Routes, Route} from "react-router-dom";
+import HomePage from "./config/component/HomePage";
+import Head from "./config/component/Head";
+import Data from "./config/Data";
+
+
 
 function App() {
+  const {kuotaAxis, kuotaIndosat, kuotaTelkomsel, kuotaSmartfren, kuotaXl, pulsaAxis, pulsaIndosat, pulsaSmartfren, pulsaTelkomsel, pulsaXl } = Data
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+          <HashRouter>
+        <Head />
+            <Routes>
+              <Route path="/" element={<HomePage />}/>
+              <Route path="/Pembayaran" element={<Card />}/>
+              <Route path="/Indosat" element={<Indosat pulsaIndosat={pulsaIndosat} kuotaIndosat={kuotaIndosat}/>}/>
+              <Route path="/Telkomsel" element={<Telkomsel pulsaTelkomsel={pulsaTelkomsel} kuotaTelkomsel={kuotaTelkomsel}/>}/>
+              <Route path="/XLaxita" element={<XLaxita pulsaXl={pulsaXl} kuotaXl={kuotaXl}/>}/>
+              <Route path="/AxisAxita" element={<AxisAxita pulsaAxis={pulsaAxis} kuotaAxis={kuotaAxis}/>}/>
+              <Route path="/Smartfren" element={<Smartfren pulsaSmartfren={pulsaSmartfren} kuotaSmartfren={kuotaSmartfren}/>}/> 
+            </Routes>
+          </HashRouter>
     </div>
   );
 }
